@@ -19,27 +19,32 @@ class _PaymentListState extends State<PaymentList> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Loans>(
-      future: _loans,
-      builder: (context, AsyncSnapshot snapshot) {
-        if (!snapshot.hasData) {
-          return Container();
-        }
-        return ListView.builder(
-          itemCount: snapshot.data.response.results.length,
-          itemBuilder: (context, index) {
-            return Row(
-              children: <Widget>[
-                Expanded(
-                  child: Text(
-                    '${snapshot.data.response.results[index].id}',
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Account'),
+      ),
+      body: FutureBuilder<Loans>(
+        future: _loans,
+        builder: (context, AsyncSnapshot snapshot) {
+          if (!snapshot.hasData) {
+            return Container();
+          }
+          return ListView.builder(
+            itemCount: snapshot.data.response.results.length,
+            itemBuilder: (context, index) {
+              return Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Text(
+                      '${snapshot.data.response.results[index].id}',
+                    ),
                   ),
-                ),
-              ],
-            );
-          },
-        );
-      },
+                ],
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

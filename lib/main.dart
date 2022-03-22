@@ -1,4 +1,5 @@
 import 'package:bill_manager/views/bill_entry.dart';
+import 'package:bill_manager/views/calendar.dart';
 import 'package:bill_manager/views/payment_list.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,7 @@ class _NavMenuState extends State<NavMenu> {
 
   final List<Widget> _children = <Widget>[
     const MyHomePage(),
-    const BillEntry(),
+    const Calendar(),
     const PaymentList(),
   ];
 
