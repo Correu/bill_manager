@@ -63,6 +63,7 @@ class _NavMenuState extends State<NavMenu> {
         },
       ),
       body: _children[_selectedIndex],
+      drawer: Drawer(),
     );
   }
 }
