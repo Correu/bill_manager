@@ -1,3 +1,4 @@
+import 'package:bill_manager/views/Widgets/loan_widget.dart';
 import 'package:flutter/material.dart';
 import 'Models/Loans.dart';
 
@@ -29,17 +30,13 @@ class _PaymentListState extends State<PaymentList> {
           if (!snapshot.hasData) {
             return Container();
           }
+          var item = snapshot.data.response.results;
           return ListView.builder(
-            itemCount: snapshot.data.response.results.length,
+            itemCount: item.length,
             itemBuilder: (context, index) {
-              return Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      '${snapshot.data.response.results[index].id}',
-                    ),
-                  ),
-                ],
+              return LoanWidget(
+                company: item[index].company,
+                amount: item[index].amount,
               );
             },
           );

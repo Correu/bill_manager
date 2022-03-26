@@ -32,7 +32,7 @@ class _NavMenuState extends State<NavMenu> {
   int _selectedIndex = 0;
 
   final List<Widget> _children = <Widget>[
-    const MyHomePage(),
+    const BillEntry(),
     const Calendar(),
     const PaymentList(),
   ];
@@ -63,7 +63,7 @@ class _NavMenuState extends State<NavMenu> {
         },
       ),
       body: _children[_selectedIndex],
-      drawer: Drawer(),
+      
     );
   }
 }

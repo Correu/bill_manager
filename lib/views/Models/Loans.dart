@@ -7,11 +7,18 @@ class Loans {
   Loans({this.response});
 
   Loans.fromJson(Map<String, dynamic> json) {
-    response = json['response'] != null
-        ? Response.fromJson(json['response'])
-        : null;
+    response =
+        json['response'] != null ? Response.fromJson(json['response']) : null;
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (response != null) {
+      data['response'] = response!.toJson();
+    }
+    return data;
+  }
+  //return data about a specific users loans
   static Future<Loans> fetchLoans() async {
     final response =
         await http.get(Uri.parse('http://10.0.2.2:8000/api/retrieveLoan'));
@@ -22,13 +29,18 @@ class Loans {
       throw Exception('Failed to load loans');
     }
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (response != null) {
-      data['response'] = response!.toJson();
-    }
-    return data;
+  //send data to post route to create loan
+  static Future<http.Response> createLoan(String company, String amount) {
+    return http.post(
+      Uri.parse('http://10.0.2.2:8000/api/saveLoan'),
+      headers: <String, String>{
+        'content-type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'company': company,
+        'amount': amount
+      }),
+    );
   }
 }
 
