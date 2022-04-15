@@ -18,6 +18,7 @@ class Loans {
     }
     return data;
   }
+
   //return data about a specific users loans
   static Future<Loans> fetchLoans() async {
     final response =
@@ -29,8 +30,10 @@ class Loans {
       throw Exception('Failed to load loans');
     }
   }
+
   //send data to post route to create loan
-  static Future<http.Response> createLoan(String company, String amount) {
+  static Future<http.Response> createLoan(
+      String company, String amount, String rate) {
     return http.post(
       Uri.parse('http://10.0.2.2:8000/api/saveLoan'),
       headers: <String, String>{
@@ -38,7 +41,8 @@ class Loans {
       },
       body: jsonEncode(<String, String>{
         'company': company,
-        'amount': amount
+        'amount': amount,
+        'rate': rate,
       }),
     );
   }
