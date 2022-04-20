@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
 
-class OfferTypeDropdown extends StatefulWidget {
-  const OfferTypeDropdown({Key? key}) : super(key: key);
+/// Dropdown selection takes in a list needed for the dropdown
+/// returns the dropdown in standard format throughout the app.
+///
+class DropdownSelection extends StatefulWidget {
+  const DropdownSelection({Key? key, required this.dropdownList, this.dropdownController})
+      : super(key: key);
+
+  final List<String> dropdownList;
+  final TextEditingController? dropdownController;
 
   @override
-  _OfferTypeDropdownState createState() => _OfferTypeDropdownState();
+  _DropdownSelectionState createState() => _DropdownSelectionState();
 }
 
-class _OfferTypeDropdownState extends State<OfferTypeDropdown> {
-  String dropdownValue = 'One';
+class _DropdownSelectionState extends State<DropdownSelection> {
+  late String dropdownValue;
+
+  @override
+  void initState() {
+    super.initState();
+    dropdownValue = widget.dropdownList.first;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
+    return DropdownButtonFormField<String>(
+      decoration: const InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+      ),
       value: dropdownValue,
       icon: const Icon(Icons.arrow_downward),
       elevation: 16,
@@ -22,8 +39,7 @@ class _OfferTypeDropdownState extends State<OfferTypeDropdown> {
           dropdownValue = newValue!;
         });
       },
-      items: <String>['One', 'Two', 'Free', 'Four']
-          .map<DropdownMenuItem<String>>((String value) {
+      items: widget.dropdownList.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value),

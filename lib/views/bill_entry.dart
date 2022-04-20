@@ -10,7 +10,9 @@ class BillEntry extends StatefulWidget {
 }
 
 class _BillEntryState extends State<BillEntry> {
+  final List<String> billEntryDropdownOptions = ["Credit Card", "Loan"];
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final typeController = TextEditingController();
   final companyController = TextEditingController();
   final amountController = TextEditingController();
   final rateController = TextEditingController();
@@ -30,7 +32,10 @@ class _BillEntryState extends State<BillEntry> {
             Row(
               children: [
                 Expanded(
-                  child: OfferTypeDropdown(),
+                  child: DropdownSelection(
+                    dropdownList: billEntryDropdownOptions,
+                    dropdownController: typeController,
+                  ),
                 ),
               ],
             ),
@@ -88,8 +93,12 @@ class _BillEntryState extends State<BillEntry> {
                     textStyle: const TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
-                    Loans.createLoan(companyController.text,
-                        amountController.text, rateController.text);
+                    debugPrint(typeController.text);
+                    Loans.createLoan(
+                        companyController.text,
+                        amountController.text,
+                        rateController.text,
+                        typeController.text);
                   },
                   child: const Text('Save Loan'),
                 ),
