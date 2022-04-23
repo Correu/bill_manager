@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 /// returns the dropdown in standard format throughout the app.
 ///
 class DropdownSelection extends StatefulWidget {
-  const DropdownSelection({Key? key, required this.dropdownList, this.dropdownController})
+  const DropdownSelection(
+      {Key? key, required this.dropdownList, this.dropdownController})
       : super(key: key);
 
   final List<String> dropdownList;
@@ -42,7 +43,9 @@ class _DropdownSelectionState extends State<DropdownSelection> {
       items: widget.dropdownList.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
-          child: Text(value),
+          child: Text(
+            value,
+          ),
         );
       }).toList(),
     );

@@ -16,6 +16,7 @@ class _BillEntryState extends State<BillEntry> {
   final companyController = TextEditingController();
   final amountController = TextEditingController();
   final rateController = TextEditingController();
+  final timeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -76,13 +77,12 @@ class _BillEntryState extends State<BillEntry> {
                 ),
                 Expanded(
                   child: TextField(
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Enter a Rate',
-                    ),
-                    keyboardType: TextInputType.number,
-                    controller: rateController,
-                  ),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Enter a Time Frame',
+                      ),
+                      keyboardType: TextInputType.number,
+                      controller: timeController),
                 ),
               ],
             ),
@@ -101,6 +101,16 @@ class _BillEntryState extends State<BillEntry> {
                         typeController.text);
                   },
                   child: const Text('Save Loan'),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  rateController.text,
+                ),
+                Text(
+                  typeController.text,
                 ),
               ],
             )
