@@ -1,4 +1,3 @@
-import 'package:bill_manager/views/Widgets/offer_type_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'Models/Loans.dart';
 
@@ -10,16 +9,28 @@ class BillEntry extends StatefulWidget {
 }
 
 class _BillEntryState extends State<BillEntry> {
-  final List<String> billEntryDropdownOptions = ["Credit Card", "Loan"];
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final typeController = TextEditingController();
   final companyController = TextEditingController();
   final amountController = TextEditingController();
   final rateController = TextEditingController();
   final timeController = TextEditingController();
+  late String selectedType = 'CREDIT_CARD';
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -33,9 +44,29 @@ class _BillEntryState extends State<BillEntry> {
             Row(
               children: [
                 Expanded(
-                  child: DropdownSelection(
-                    dropdownList: billEntryDropdownOptions,
-                    dropdownController: typeController,
+                  child: DropdownButtonFormField<String>(
+                    decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                    value: selectedType,
+                    icon: const Icon(Icons.arrow_downward),
+                    elevation: 16,
+                    style: const TextStyle(color: Colors.blue),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectedType = newValue!;
+                      });
+                    },
+                    items: ["CREDIT_CARD", "LOAN"]
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ),
               ],
@@ -88,17 +119,32 @@ class _BillEntryState extends State<BillEntry> {
             ),
             Row(
               children: [
+                Checkbox(
+                  checkColor: Colors.white,
+                  value: isChecked,
+                  fillColor: MaterialStateProperty.resolveWith(getColor),
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                )
+              ],
+            ),
+            Row(
+              children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     textStyle: const TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
-                    debugPrint(typeController.text);
+                    debugPrint(selectedType);
                     Loans.createLoan(
                         companyController.text,
                         amountController.text,
                         rateController.text,
-                        typeController.text);
+                        selectedType,
+                        isChecked);
                   },
                   child: const Text('Save Loan'),
                 ),
@@ -110,7 +156,7 @@ class _BillEntryState extends State<BillEntry> {
                   rateController.text,
                 ),
                 Text(
-                  typeController.text,
+                  selectedType,
                 ),
               ],
             )

@@ -33,7 +33,7 @@ class Loans {
 
   //send data to post route to create loan
   static Future<http.Response> createLoan(
-      String company, String amount, String rate, String type) {
+      String company, String amount, String rate, String type, bool recurring) {
     return http.post(
       Uri.parse('http://10.0.2.2:8000/api/saveLoan'),
       headers: <String, String>{
@@ -44,6 +44,7 @@ class Loans {
         'amount': amount,
         'rate': rate,
         'type': type,
+        'recurring': recurring.toString(),
       }),
     );
   }
