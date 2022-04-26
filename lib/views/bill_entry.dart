@@ -15,7 +15,7 @@ class _BillEntryState extends State<BillEntry> {
   final rateController = TextEditingController();
   final timeController = TextEditingController();
   late String selectedType = 'CREDIT_CARD';
-  bool isChecked = false;
+  bool isChecked = true;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +28,11 @@ class _BillEntryState extends State<BillEntry> {
       if (states.any(interactiveStates.contains)) {
         return Colors.blue;
       }
-      return Colors.red;
+      return Colors.blue;
     }
 
     return Scaffold(
+      backgroundColor: const Color(0x338ccdff),
       appBar: AppBar(
         title: const Text(
           'Bill Entry Page',
@@ -128,7 +129,13 @@ class _BillEntryState extends State<BillEntry> {
                       isChecked = value!;
                     });
                   },
-                )
+                ),
+                const Text(
+                  'Reccurring?',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
               ],
             ),
             Row(
@@ -138,7 +145,7 @@ class _BillEntryState extends State<BillEntry> {
                     textStyle: const TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
-                    debugPrint(selectedType);
+                    debugPrint(isChecked.toString());
                     Loans.createLoan(
                         companyController.text,
                         amountController.text,

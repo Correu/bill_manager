@@ -16,6 +16,7 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0x338ccdff),
       appBar: AppBar(
         title: const Text('Current Month'),
       ),

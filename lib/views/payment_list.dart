@@ -21,6 +21,7 @@ class _PaymentListState extends State<PaymentList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0x338ccdff),
       appBar: AppBar(
         title: const Text('Account'),
       ),
