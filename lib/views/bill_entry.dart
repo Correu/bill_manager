@@ -33,17 +33,30 @@ class _BillEntryState extends State<BillEntry> {
 
     return Scaffold(
       backgroundColor: const Color(0x338ccdff),
-      appBar: AppBar(
-        title: const Text(
-          'Bill Entry Page',
-        ),
-      ),
       body: Form(
         key: _formKey,
         child: Column(
           children: [
+            const Padding(
+              padding: EdgeInsets.all(
+                20.0,
+              ),
+            ),
             Row(
               children: [
+                const Padding(
+                  padding: EdgeInsets.all(
+                    5.0,
+                  ),
+                ),
+                const Text(
+                  'Select a Type',
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(
+                    5.0,
+                  ),
+                ),
                 Expanded(
                   child: DropdownButtonFormField<String>(
                     decoration: const InputDecoration(
@@ -53,13 +66,14 @@ class _BillEntryState extends State<BillEntry> {
                     value: selectedType,
                     icon: const Icon(Icons.arrow_downward),
                     elevation: 16,
-                    style: const TextStyle(color: Colors.blue),
+                    style: const TextStyle(
+                        color: Colors.blue, backgroundColor: Color(0x338ccdff)),
                     onChanged: (String? newValue) {
                       setState(() {
                         selectedType = newValue!;
                       });
                     },
-                    items: ["CREDIT_CARD", "LOAN"]
+                    items: ["CREDIT_CARD", "PERSONAL_LOAN"]
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -70,10 +84,20 @@ class _BillEntryState extends State<BillEntry> {
                     }).toList(),
                   ),
                 ),
+                const Padding(
+                  padding: EdgeInsets.all(
+                    5.0,
+                  ),
+                ),
               ],
             ),
             Row(
               children: [
+                const Padding(
+                  padding: EdgeInsets.all(
+                    5.0,
+                  ),
+                ),
                 Expanded(
                   child: TextField(
                     decoration: const InputDecoration(
@@ -81,6 +105,11 @@ class _BillEntryState extends State<BillEntry> {
                       hintText: 'Enter the Company',
                     ),
                     controller: companyController,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(
+                    5.0,
                   ),
                 ),
                 Expanded(
@@ -93,10 +122,20 @@ class _BillEntryState extends State<BillEntry> {
                     controller: amountController,
                   ),
                 ),
+                const Padding(
+                  padding: EdgeInsets.all(
+                    5.0,
+                  ),
+                ),
               ],
             ),
             Row(
               children: [
+                const Padding(
+                  padding: EdgeInsets.all(
+                    5.0,
+                  ),
+                ),
                 Expanded(
                   child: TextField(
                     decoration: const InputDecoration(
@@ -107,6 +146,11 @@ class _BillEntryState extends State<BillEntry> {
                     controller: rateController,
                   ),
                 ),
+                const Padding(
+                  padding: EdgeInsets.all(
+                    5.0,
+                  ),
+                ),
                 Expanded(
                   child: TextField(
                       decoration: const InputDecoration(
@@ -115,6 +159,11 @@ class _BillEntryState extends State<BillEntry> {
                       ),
                       keyboardType: TextInputType.number,
                       controller: timeController),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(
+                    5.0,
+                  ),
                 ),
               ],
             ),
@@ -140,6 +189,11 @@ class _BillEntryState extends State<BillEntry> {
             ),
             Row(
               children: [
+                const Padding(
+                  padding: EdgeInsets.all(
+                    5.0,
+                  ),
+                ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     textStyle: const TextStyle(fontSize: 20),
@@ -156,17 +210,8 @@ class _BillEntryState extends State<BillEntry> {
                   child: const Text('Save Loan'),
                 ),
               ],
+              mainAxisAlignment: MainAxisAlignment.center,
             ),
-            Row(
-              children: [
-                Text(
-                  rateController.text,
-                ),
-                Text(
-                  selectedType,
-                ),
-              ],
-            )
           ],
         ),
       ),

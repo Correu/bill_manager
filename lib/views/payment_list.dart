@@ -1,6 +1,6 @@
 import 'package:bill_manager/views/Widgets/loan_widget.dart';
 import 'package:flutter/material.dart';
-import 'Models/Loans.dart';
+import 'Models/DebtItems.dart';
 
 class PaymentList extends StatefulWidget {
   const PaymentList({Key? key}) : super(key: key);
@@ -10,12 +10,12 @@ class PaymentList extends StatefulWidget {
 }
 
 class _PaymentListState extends State<PaymentList> {
-  late Future<Loans> _loans;
+  late Future<DebtItems> _debtItems;
 
   @override
   void initState() {
     super.initState();
-    _loans = Loans.fetchLoans();
+    _debtItems = DebtItems.fetchItems();
   }
 
   @override
@@ -25,8 +25,8 @@ class _PaymentListState extends State<PaymentList> {
       appBar: AppBar(
         title: const Text('Account'),
       ),
-      body: FutureBuilder<Loans>(
-        future: _loans,
+      body: FutureBuilder<DebtItems>(
+        future: _debtItems,
         builder: (context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
             return Container();
