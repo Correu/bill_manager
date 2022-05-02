@@ -5,11 +5,10 @@ A mobile application that gives the user a single location to track their spendi
 ### Built using the flutter framework with a laravel API connecting the database to the application.
 
 ## Bill/Loan Entry Page
-<img src="https://user-images.githubusercontent.com/60193729/164501935-8dae955b-9cdc-4ef6-9afb-4bef7a817481.png" width="200px" height="auto">
+<img src="https://user-images.githubusercontent.com/60193729/166257043-8f2b2c14-c203-4145-899f-14fec3568161.png" width="200px" height="auto">
 
 ## Calendar Page
-<img src="https://user-images.githubusercontent.com/60193729/164542627-8210bfc6-9296-4e73-ace3-3dc3e0b8fe5f.png" width="200px" heihgt="auto">
+<img src="https://user-images.githubusercontent.com/60193729/166257169-02ddfeaa-9006-462f-8f77-a83369a8542e.png" width="200px" heihgt="auto">
 
 ## Previous Payments Page
-<img src="https://user-images.githubusercontent.com/60193729/164542979-e5012086-738a-490c-abb6-7816a940ae66.png" width="200px" height="auto">
-
+<img src="https://user-images.githubusercontent.com/60193729/166257245-777aac82-7822-447b-9d14-b4548d7eead0.png" width="200px" height="auto">
