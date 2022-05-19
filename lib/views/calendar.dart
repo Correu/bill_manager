@@ -58,9 +58,22 @@ class _CalendarState extends State<Calendar> {
               _focusedDay = focusedDay;
             },
           ),
-          const Text(
-            'This is a test',
-          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Placeholder(
+                fallbackHeight: 100.0,
+                fallbackWidth: 50.0,
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+              ),
+              Placeholder(
+                fallbackHeight: 100.0,
+                fallbackWidth: 50.0,
+              ),
+            ],
+          )
         ],
       ),
     );
