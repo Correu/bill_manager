@@ -9,7 +9,8 @@ class BillEntry extends StatefulWidget {
 }
 
 class _BillEntryState extends State<BillEntry> {
-  int _typeIndex = 0;
+  String? _loanType;
+  List<String> loanTypeValue = ["CREDIT_CARD", "PERSONAL_LOAN"];
 
   final List<Widget> _loanTypes = <Widget>[
     const LoanInputPage(),
@@ -18,6 +19,9 @@ class _BillEntryState extends State<BillEntry> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Bill Entry'),
+      ),
       backgroundColor: const Color(0x338ccdff),
       body: Row(
         children: [
@@ -45,28 +49,30 @@ class _BillEntryState extends State<BillEntry> {
                 filled: true,
                 fillColor: Colors.white,
               ),
-              value: _typeIndex,
               icon: const Icon(Icons.arrow_downward),
               elevation: 16,
               style: const TextStyle(
                   color: Colors.blue, backgroundColor: Color(0x338ccdff)),
-              onChanged: (String? newValue) {
+              items: ["CREDIT_CARD", "PERSONAL_LOAN"]
+                  .map<DropdownMenuItem<String>>(
+                (String value) {
+                  return DropdownMenuItem(
+                    value: value,
+                    child: Text(
+                      value,
+                    ),
+                  );
+                },
+              ).toList(),
+              onChanged: (value) {
                 setState(() {
-                  selectedType = newValue!;
+                  _loanType = value;
                 });
               },
-              items: ["CREDIT_CARD", "PERSONAL_LOAN"]
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value,
-                  ),
-                );
-              }).toList(),
+              value: _loanType,
             ),
           ),
-          _loanTypes[_typeIndex],
+          Expanded(child: _loanTypes[_loanTypes.indexOf(_loanType)])
         ],
       ),
     );
