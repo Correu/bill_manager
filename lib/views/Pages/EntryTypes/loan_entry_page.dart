@@ -1,6 +1,11 @@
 import 'package:bill_manager/views/Models/Loans.dart';
 import 'package:flutter/material.dart';
 
+///
+/// LoanInputPage - 
+/// Input page for user to put in loan information of varying types
+/// (Personal, Business, Auto, etc...)
+///
 class LoanInputPage extends StatefulWidget {
   const LoanInputPage({Key? key}) : super(key: key);
 
@@ -41,7 +46,7 @@ class _LoanInputPageState extends State<LoanInputPage> {
         children: [
           const Padding(
             padding: EdgeInsets.all(
-              20.0,
+              5.0,
             ),
           ),
           Row(

@@ -2,6 +2,11 @@ import 'package:bill_manager/views/Pages/EntryTypes/bill_entry_page.dart';
 import 'package:bill_manager/views/Pages/EntryTypes/loan_entry_page.dart';
 import 'package:flutter/material.dart';
 
+///
+/// BillEntry - 
+/// Initial Application point to allow the user to select the type of financial object,
+/// changing the page content based on the selected option (Card, loan, etc..)
+///
 class BillEntry extends StatefulWidget {
   const BillEntry({Key? key}) : super(key: key);
 
@@ -27,6 +32,11 @@ class _BillEntryState extends State<BillEntry> {
       backgroundColor: const Color(0x338ccdff),
       body: Column(
         children: [
+          const Padding(
+            padding: EdgeInsets.all(
+              5.0,
+            ),
+          ),
           Row(
             children: [
               const Padding(
@@ -42,11 +52,6 @@ class _BillEntryState extends State<BillEntry> {
                   5.0,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(
-                  5.0,
-                ),
-              ),
               Expanded(
                 child: DropdownButtonFormField<String>(
                   decoration: const InputDecoration(
@@ -56,9 +61,10 @@ class _BillEntryState extends State<BillEntry> {
                   icon: const Icon(Icons.arrow_downward),
                   elevation: 16,
                   style: const TextStyle(
-                      color: Colors.blue, backgroundColor: Color(0x338ccdff)),
-                  items: loanTypeValue
-                      .map<DropdownMenuItem<String>>(
+                    color: Colors.blue,
+                    backgroundColor: Color(0x338ccdff),
+                  ),
+                  items: loanTypeValue.map<DropdownMenuItem<String>>(
                     (String value) {
                       return DropdownMenuItem(
                         value: value,
@@ -85,7 +91,7 @@ class _BillEntryState extends State<BillEntry> {
                 child: _loanTypes[loanTypeValue.indexOf(_loanType.toString())],
               ),
             ],
-          )
+          ),
         ],
       ),
     );

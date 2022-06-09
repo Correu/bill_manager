@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+///
+/// Calendar - 
+/// Widget used to display the users required payments/saving goals for the current month.
+///
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
 
