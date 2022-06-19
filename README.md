@@ -4,7 +4,7 @@ A mobile application that gives the user a single location to track their spendi
 
 ### Built using the flutter framework with a laravel API connecting the database to the application.
 
-###Packages Used
+### Packages Used
  - table_calendar 3.0.6 
 
 ## Bill/Loan Entry Page
