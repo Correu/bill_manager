@@ -1,9 +1,10 @@
 import 'package:bill_manager/views/Pages/EntryTypes/bill_entry_page.dart';
 import 'package:bill_manager/views/Pages/EntryTypes/loan_entry_page.dart';
+import 'package:bill_manager/views/Pages/EntryTypes/rent_entry_page.dart';
 import 'package:flutter/material.dart';
 
 ///
-/// BillEntry - 
+/// BillEntry -
 /// Initial Application point to allow the user to select the type of financial object,
 /// changing the page content based on the selected option (Card, loan, etc..)
 ///
@@ -16,19 +17,17 @@ class BillEntry extends StatefulWidget {
 
 class _BillEntryState extends State<BillEntry> {
   String? _loanType = "CREDIT_CARD";
-  List<String> loanTypeValue = ["CREDIT_CARD", "PERSONAL_LOAN"];
+  List<String> loanTypeValue = ["CREDIT_CARD", "PERSONAL_LOAN", "RENT"];
 
   final List<Widget> _loanTypes = <Widget>[
     const LoanInputPage(),
     const BillInputPage(),
+    const RentEntryPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bill Entry'),
-      ),
       backgroundColor: const Color(0x338ccdff),
       body: Column(
         children: [

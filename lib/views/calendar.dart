@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 ///
-/// Calendar - 
+/// Calendar -
 /// Widget used to display the users required payments/saving goals for the current month.
 ///
 class Calendar extends StatefulWidget {
@@ -21,9 +22,6 @@ class _CalendarState extends State<Calendar> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0x338ccdff),
-      appBar: AppBar(
-        title: const Text('Current Month'),
-      ),
       body: Column(
         children: [
           TableCalendar(
@@ -64,17 +62,39 @@ class _CalendarState extends State<Calendar> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Placeholder(
-                fallbackHeight: 100.0,
-                fallbackWidth: 50.0,
+            children: [
+              Column(
+                children: [
+                  SleekCircularSlider(
+                    appearance: const CircularSliderAppearance(),
+                    onChange: (double value) {
+                      debugPrint('$value');
+                    },
+                  ),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width / 2,
+                    ),
+                    child: const Text(
+                      "Remaining income after this months bills",
+                    ),
+                  ),
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.all(10.0),
+              const Padding(
+                padding: EdgeInsets.all(20.0),
               ),
-              Placeholder(
-                fallbackHeight: 100.0,
-                fallbackWidth: 50.0,
+              Column(
+                children: [
+                  SleekCircularSlider(
+                    appearance: const CircularSliderAppearance(
+                      angleRange: 360,
+                    ),
+                    onChange: (double value) {
+                      debugPrint('$value');
+                    },
+                  ),
+                ],
               ),
             ],
           )

@@ -162,6 +162,7 @@ class _LoanInputPageState extends State<LoanInputPage> {
                       companyController.text,
                       amountController.text,
                       rateController.text,
+                      timeController.text,
                       selectedType,
                       isChecked);
                 },

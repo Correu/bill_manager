@@ -22,9 +22,6 @@ class _PaymentListState extends State<PaymentList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0x338ccdff),
-      appBar: AppBar(
-        title: const Text('Account'),
-      ),
       body: FutureBuilder<DebtItems>(
         future: _debtItems,
         builder: (context, AsyncSnapshot snapshot) {
