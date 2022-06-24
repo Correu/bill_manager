@@ -8,6 +8,10 @@ A mobile application that gives the user a single location to track their spendi
  - table_calendar 3.0.6
  - sleek_circular_slider 2.0.1
 
+### Documentation
+ - Flow Diagrams https://www.figma.com/file/sZzSzE5vCFDpS5sucbLDOW/BillManagerFlowDiagrams
+ - 
+
 ## Bill/Loan Entry Page
 <img src="https://user-images.githubusercontent.com/60193729/166257043-8f2b2c14-c203-4145-899f-14fec3568161.png" width="200px" height="auto">
 
