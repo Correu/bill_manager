@@ -7,6 +7,7 @@ A mobile application that gives the user a single location to track their spendi
 ### Packages Used
  - table_calendar 3.0.6
  - sleek_circular_slider 2.0.1
+ - shared_preferences 2.0.15
 
 ### Documentation
  - Flow Diagrams https://www.figma.com/file/sZzSzE5vCFDpS5sucbLDOW/BillManagerFlowDiagrams
