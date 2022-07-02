@@ -57,7 +57,7 @@ class Results {
   int? id;
   String? company;
   int? amount;
-  String? rate;
+  int? rate;
   int? timeFrame;
   String? type;
   int? recurring;

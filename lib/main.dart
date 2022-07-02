@@ -1,3 +1,4 @@
+import 'package:bill_manager/views/Pages/AccountManagement/account_creation_page.dart';
 import 'package:bill_manager/views/bill_entry.dart';
 import 'package:bill_manager/views/calendar.dart';
 import 'package:bill_manager/views/payment_list.dart';
@@ -65,10 +66,20 @@ class _NavMenuState extends State<NavMenu> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              Text(
-                "text",
-              ),
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return const AccountCreation();
+                      },
+                    ),
+                  );
+                },
+                child: const Text('Creation Page'),
+              )
             ],
           ),
         ),

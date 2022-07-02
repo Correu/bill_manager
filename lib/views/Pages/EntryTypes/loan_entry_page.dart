@@ -2,7 +2,7 @@ import 'package:bill_manager/views/Models/Loans.dart';
 import 'package:flutter/material.dart';
 
 ///
-/// LoanInputPage - 
+/// LoanInputPage -
 /// Input page for user to put in loan information of varying types
 /// (Personal, Business, Auto, etc...)
 ///
@@ -15,7 +15,7 @@ class LoanInputPage extends StatefulWidget {
 
 class _LoanInputPageState extends State<LoanInputPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  
+
   //controllers for field inputs
   final companyController = TextEditingController();
   final amountController = TextEditingController();
@@ -26,7 +26,6 @@ class _LoanInputPageState extends State<LoanInputPage> {
 
   @override
   Widget build(BuildContext context) {
-
     //changing color of the buttons
     Color getColor(Set<MaterialState> states) {
       const Set<MaterialState> interactiveStates = <MaterialState>{
@@ -154,7 +153,9 @@ class _LoanInputPageState extends State<LoanInputPage> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  textStyle: const TextStyle(fontSize: 20),
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                  ),
                 ),
                 onPressed: () {
                   debugPrint(isChecked.toString());

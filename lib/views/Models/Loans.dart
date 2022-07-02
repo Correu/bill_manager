@@ -32,8 +32,8 @@ class Loans {
   }
 
   //send data to post route to create loan
-  static Future<http.Response> createLoan(
-      String company, String amount, String rate, String time, String type, bool recurring) {
+  static Future<http.Response> createLoan(String company, String amount,
+      String rate, String time, String type, bool recurring) {
     return http.post(
       Uri.parse('http://10.0.2.2:8000/api/saveLoan'),
       headers: <String, String>{
@@ -82,13 +82,14 @@ class Results {
   int? timeFrame;
   String? dueDay;
 
-  Results(
-      {this.id,
-      this.company,
-      this.amount,
-      this.rate,
-      this.timeFrame,
-      this.dueDay});
+  Results({
+    this.id,
+    this.company,
+    this.amount,
+    this.rate,
+    this.timeFrame,
+    this.dueDay,
+  });
 
   Results.fromJson(Map<String, dynamic> json) {
     id = json['id'];
