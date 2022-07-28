@@ -1,4 +1,5 @@
 import 'package:bill_manager/views/Pages/AccountManagement/account_creation_page.dart';
+import 'package:bill_manager/views/Pages/AccountManagement/sign_in_page.dart';
 import 'package:bill_manager/views/bill_entry.dart';
 import 'package:bill_manager/views/calendar.dart';
 import 'package:bill_manager/views/payment_list.dart';
@@ -73,13 +74,13 @@ class _NavMenuState extends State<NavMenu> {
                     context,
                     MaterialPageRoute(
                       builder: (BuildContext context) {
-                        return const AccountCreation();
+                        return const SignInPage();
                       },
                     ),
                   );
                 },
-                child: const Text('Creation Page'),
-              )
+                child: const Text('Account Page'),
+              ),
             ],
           ),
         ),

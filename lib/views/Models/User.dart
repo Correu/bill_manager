@@ -1,10 +1,15 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+//device information imports
+import 'package:device_info_plus/device_info_plus.dart';
 
 const String baseURL = 'http://10.0.2.2:8000/';
 
 class User {
   Response? response;
+  bool _isAuthenticated = false;
 
   User({this.response});
 
@@ -24,11 +29,11 @@ class User {
   ///
   /// Create a new user
   ///
-  static Future<http.Response> createUser(
-      String name, String email, String password) {
-    return http.post(
+  Future<bool> createUser(String name, String email, String password) async {
+    final response = await http.post(
       Uri.parse(baseURL + 'api/createNewUser'),
       headers: <String, String>{
+        'Accept': 'application/json',
         'content-type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
@@ -37,6 +42,46 @@ class User {
         'password': password,
       }),
     );
+
+    if (response.statusCode == 200) {
+      String token = response.body;
+      await saveToken(token);
+      _isAuthenticated = true;
+      return true;
+    }
+
+    return false;
+  }
+
+  Future<http.Response> loginUser(String email, String password, String device) async {
+    final response = await http.post(Uri.parse(baseURL + 'api/login'),
+        headers: <String, String>{
+          'Accept': 'application/json',
+          'content-type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          <String, String>{
+            'email': email,
+            'password': password,
+            'device_name': device,
+          },
+        ));
+
+        if(response.statusCode == 200) {
+          String token = response.body;
+          await saveToken(token);
+          _isAuthenticated = true;
+        }
+
+        return response;
+  }
+
+  ///
+  /// save token to the device for auth state changes.
+  ///
+  saveToken(String token) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('token', token);
   }
 }
 
