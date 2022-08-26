@@ -79,7 +79,22 @@ class _NavMenuState extends State<NavMenu> {
                     ),
                   );
                 },
-                child: const Text('Account Page'),
+                child: const Text('Account Sign In Page'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return const AccountCreation();
+                      },
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Account Creation Page",
+                ),
               ),
             ],
           ),

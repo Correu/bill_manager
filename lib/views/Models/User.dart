@@ -44,9 +44,6 @@ class User {
     );
 
     if (response.statusCode == 200) {
-      String token = response.body;
-      await saveToken(token);
-      _isAuthenticated = true;
       return true;
     }
 
@@ -67,6 +64,7 @@ class User {
           },
         ));
 
+        //if successful sign in save token and return content
         if(response.statusCode == 200) {
           String token = response.body;
           await saveToken(token);
