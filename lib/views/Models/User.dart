@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -42,8 +43,9 @@ class User {
         'password': password,
       }),
     );
-
+    debugPrint('${response.statusCode}');
     if (response.statusCode == 200) {
+      debugPrint("Success Create User");
       return true;
     }
 
@@ -51,10 +53,10 @@ class User {
   }
 
   Future<http.Response> loginUser(String email, String password, String device) async {
-    final response = await http.post(Uri.parse(baseURL + 'api/login'),
+    final response = await http.post(Uri.parse(baseURL + 'api/mobileLogin'),
         headers: <String, String>{
           'Accept': 'application/json',
-          'content-type': 'application/json; charset=UTF-8',
+          'content-type': 'application/json',
         },
         body: jsonEncode(
           <String, String>{
@@ -64,9 +66,12 @@ class User {
           },
         ));
 
+        debugPrint('${response.statusCode}');
+
         //if successful sign in save token and return content
         if(response.statusCode == 200) {
           String token = response.body;
+          debugPrint("login success $token");
           await saveToken(token);
           _isAuthenticated = true;
         }

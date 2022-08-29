@@ -14,7 +14,9 @@ void main() {
 
 ///
 /// Main Page -
-/// Handles page navigation, containing the bottom nav bar and the drawer side nav.
+/// Initial Load of Application -
+/// swipe between three main pages
+/// top bar to sign in, create an account, and sign out
 ///
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -38,13 +40,6 @@ class NavMenu extends StatefulWidget {
 }
 
 class _NavMenuState extends State<NavMenu> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _children = <Widget>[
-    const BillEntry(),
-    const Calendar(),
-    const PaymentList(),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -100,29 +95,13 @@ class _NavMenuState extends State<NavMenu> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.attach_money),
-            label: 'Enter Loan',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month),
-            label: 'Current Period',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.view_list),
-            label: 'Payment List',
-          )
+      body: PageView(
+        children: const <Widget>[
+          BillEntry(),
+          Calendar(),
+          PaymentList(),
         ],
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
       ),
-      body: _children[_selectedIndex],
     );
   }
 }
