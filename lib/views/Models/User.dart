@@ -3,6 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+//firebase auth packages
+import 'package:firebase_auth/firebase_auth.dart';
+
 //device information imports
 import 'package:device_info_plus/device_info_plus.dart';
 
@@ -19,6 +22,12 @@ class User {
         json['response'] != null ? Response.fromJson(json['response']) : null;
   }
 
+  Future<void> main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+
+    await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (response != null) {
