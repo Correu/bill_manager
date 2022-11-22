@@ -22,5 +22,11 @@ class Rent {
 class Response {
   List<Results>? results;
 
+  Response.fromJson(Map<String, dynamic> json) {
+    response = json['response'] != null ? Response.fromJson(json['response']) : null;
+  }
+}
+
+class Results {
   
 }
