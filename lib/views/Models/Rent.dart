@@ -13,7 +13,7 @@ class Rent {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if(response != null) {
-      data['response'] = response!.toJson();
+      //data['response'] = response!.toJson();
     }
     return data;
   }
@@ -23,7 +23,7 @@ class Response {
   List<Results>? results;
 
   Response.fromJson(Map<String, dynamic> json) {
-    response = json['response'] != null ? Response.fromJson(json['response']) : null;
+    //response = json['response'] != null ? Response.fromJson(json['response']) : null;
   }
 }
 
