@@ -1,5 +1,6 @@
 import 'package:bill_manager/views/Pages/AccountManagement/account_creation_page.dart';
 import 'package:bill_manager/views/Pages/AccountManagement/sign_in_page.dart';
+import 'package:bill_manager/views/Widgets/nav_buttons.dart';
 import 'package:bill_manager/views/bill_entry.dart';
 import 'package:bill_manager/views/calendar.dart';
 import 'package:bill_manager/views/payment_list.dart';
@@ -40,7 +41,6 @@ class NavMenu extends StatefulWidget {
 }
 
 class _NavMenuState extends State<NavMenu> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,11 +95,15 @@ class _NavMenuState extends State<NavMenu> {
           ),
         ),
       ),
-      body: PageView(
-        children: const <Widget>[
-          BillEntry(),
-          Calendar(),
-          PaymentList(),
+      body: Stack(
+        children: [
+          PageView(
+            children: const <Widget>[
+              BillEntry(),
+              Calendar(),
+              PaymentList(),
+            ],
+          ),const NavButtons(),
         ],
       ),
     );
