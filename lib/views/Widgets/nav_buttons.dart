@@ -6,11 +6,17 @@ class NavButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: const <Widget>[
-        Text(
+      children: <Widget>[
+        FloatingActionButton(
+          onPressed: () {},
+          child: const Text(
+            "Menu",
+          ),
+        ),
+        const Text(
           "Left Side",
         ),
-        Text(
+        const Text(
           "Right Side",
         )
       ],
