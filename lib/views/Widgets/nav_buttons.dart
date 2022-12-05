@@ -15,14 +15,16 @@ class NavButtons extends StatelessWidget {
           ),
         ),
         FloatingActionButton(
-          onPressed: () {Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) {
-                        return const AccountCreation();
-                      },
-                    ),
-                  );},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return const AccountCreation();
+                },
+              ),
+            );
+          },
           child: const Text(
             "Menu",
           ),
