@@ -52,7 +52,8 @@ class User {
         'password': password,
       }),
     );
-    debugPrint('${response.statusCode}'); 
+    debugPrint('${response.statusCode}');
+    debugPrint(response.body);
     if (response.statusCode == 200) {
       debugPrint("Success Create User");
       return true;
@@ -76,6 +77,7 @@ class User {
         ));
 
         debugPrint('${response.statusCode}');
+        debugPrint(response.body);
 
         //if successful sign in save token and return content
         if(response.statusCode == 200) {
