@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class Loans {
@@ -32,9 +33,9 @@ class Loans {
   }
 
   //send data to post route to create loan
-  static Future<http.Response> createLoan(String company, String amount,
-      String rate, String time, String type, bool recurring) {
-    return http.post(
+  Future<bool> createLoan(String company, String amount,
+      String rate, String time, String type) async {
+    final response = await http.post(
       Uri.parse('http://10.0.2.2:8000/api/saveLoan'),
       headers: <String, String>{
         'content-type': 'application/json; charset=UTF-8',
@@ -45,9 +46,16 @@ class Loans {
         'rate': rate,
         'time_frame': time,
         'type': type,
-        'recurring': recurring.toString(),
       }),
     );
+    debugPrint('${response.statusCode}');
+    debugPrint(response.body);
+
+    if(response.statusCode == 200) {
+      debugPrint("Success credit card creation");
+      return true;
+    }
+    return false;
   }
 }
 

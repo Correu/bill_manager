@@ -159,13 +159,12 @@ class _LoanInputPageState extends State<LoanInputPage> {
                 ),
                 onPressed: () {
                   debugPrint(isChecked.toString());
-                  Loans.createLoan(
+                  Loans().createLoan(
                       companyController.text,
                       amountController.text,
                       rateController.text,
                       timeController.text,
-                      selectedType,
-                      isChecked);
+                      selectedType);
                 },
                 child: const Text('Save Loan'),
               ),
