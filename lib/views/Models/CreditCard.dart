@@ -1,13 +1,14 @@
 import 'dart:convert';
+import 'package:bill_manager/views/Models/User.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-class Loans {
+class CreditCard {
   Response? response;
 
-  Loans({this.response});
+  CreditCard({this.response});
 
-  Loans.fromJson(Map<String, dynamic> json) {
+  CreditCard.fromJson(Map<String, dynamic> json) {
     response =
         json['response'] != null ? Response.fromJson(json['response']) : null;
   }
@@ -20,39 +21,29 @@ class Loans {
     return data;
   }
 
-  //return data about a specific users loans
-  static Future<Loans> fetchLoans() async {
-    final response =
-        await http.get(Uri.parse('http://10.0.2.2:8000/api/retrieveLoan'));
-
-    if (response.statusCode == 200) {
-      return Loans.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Failed to load loans');
-    }
-  }
-
-  //send data to post route to create loan
-  Future<bool> createLoan(String company, String amount,
-      String rate, String time, String type) async {
+  ///
+  ///Create a credit card
+  ///
+  Future<bool> createCard(String company, String balance, String creditLim,
+      String rate, String dueDate) async {
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:8000/api/saveLoan'),
+      Uri.parse(baseURL + 'api/createNewCard'),
       headers: <String, String>{
+        'Accept': 'application/json',
         'content-type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
         'company': company,
-        'amount': amount,
+        'balance': balance,
+        'credit_lim': creditLim,
         'rate': rate,
-        'time_frame': time,
-        'type': type,
+        'due_day': dueDate,
       }),
     );
     debugPrint('${response.statusCode}');
     debugPrint(response.body);
-
     if(response.statusCode == 200) {
-      debugPrint("Success credit card creation");
+      debugPrint("Success card create");
       return true;
     }
     return false;
@@ -76,7 +67,7 @@ class Response {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (results != null) {
-      data['results'] = results!.map((v) => v.toJson()).toList();
+      data['results'] = results!.map((e) => e.toJson()).toList();
     }
     return data;
   }
@@ -85,37 +76,36 @@ class Response {
 class Results {
   int? id;
   String? company;
-  int? amount;
-  String? rate;
-  int? timeFrame;
-  String? dueDay;
+  double? balance;
+  double? creditLim;
+  double? rate;
+  String? dueDate;
 
-  Results({
-    this.id,
-    this.company,
-    this.amount,
-    this.rate,
-    this.timeFrame,
-    this.dueDay,
-  });
+  Results(
+      {this.id,
+      this.company,
+      this.balance,
+      this.creditLim,
+      this.rate,
+      this.dueDate});
 
   Results.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     company = json['company'];
-    amount = json['amount'];
+    balance = json['balance'];
+    creditLim = json['credit_lim'];
     rate = json['rate'];
-    timeFrame = json['time_frame'];
-    dueDay = json['due_day'];
+    dueDate = json['due_day'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['company'] = company;
-    data['amount'] = amount;
+    data['balance'] = balance;
+    data['credit_lim'] = creditLim;
     data['rate'] = rate;
-    data['time_frame'] = timeFrame;
-    data['due_day'] = dueDay;
+    data['due_day'] = dueDate;
     return data;
   }
 }

@@ -41,61 +41,15 @@ class NavMenu extends StatefulWidget {
 }
 
 class _NavMenuState extends State<NavMenu> {
+  bool isBusy = false;
+  bool isLoggedIn = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            );
-          },
-        ),
-        title: const Text('Bill Entry'),
-      ),
-      drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) {
-                        return const SignInPage();
-                      },
-                    ),
-                  );
-                },
-                child: const Text('Account Sign In Page'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) {
-                        return const AccountCreation();
-                      },
-                    ),
-                  );
-                },
-                child: const Text(
-                  "Account Creation Page",
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      backgroundColor: const Color(0x338ccdff),
       body: Stack(
+        alignment: AlignmentDirectional.bottomStart,
         children: [
           PageView(
             children: const <Widget>[
@@ -103,7 +57,8 @@ class _NavMenuState extends State<NavMenu> {
               Calendar(),
               PaymentList(),
             ],
-          ),const NavButtons(),
+          ),
+          const NavButtons(),
         ],
       ),
     );
