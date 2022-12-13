@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const BillManager());
 }
 
 ///
@@ -19,31 +19,17 @@ void main() {
 /// swipe between three main pages
 /// top bar to sign in, create an account, and sign out
 ///
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class BillManager extends StatefulWidget {
+  const BillManager({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: NavMenu(),
-    );
-  }
+  State<BillManager> createState() => _BillManagerState();
 }
 
-/*
-  Bottom Navigation Bar
-*/
-class NavMenu extends StatefulWidget {
-  const NavMenu({Key? key}) : super(key: key);
-
-  @override
-  State<NavMenu> createState() => _NavMenuState();
-}
-
-class _NavMenuState extends State<NavMenu> {
+class _BillManagerState extends State<BillManager> {
   bool isBusy = false;
   bool isLoggedIn = false;
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
