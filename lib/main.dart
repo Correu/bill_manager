@@ -1,5 +1,3 @@
-import 'package:bill_manager/views/Pages/AccountManagement/account_creation_page.dart';
-import 'package:bill_manager/views/Pages/AccountManagement/sign_in_page.dart';
 import 'package:bill_manager/views/Widgets/nav_buttons.dart';
 import 'package:bill_manager/views/bill_entry.dart';
 import 'package:bill_manager/views/calendar.dart';
@@ -10,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
-  runApp(const BillManager());
+  runApp(const MyApp());
 }
 
 ///
@@ -19,6 +17,17 @@ void main() {
 /// swipe between three main pages
 /// top bar to sign in, create an account, and sign out
 ///
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: BillManager(),
+    );
+  }
+}
+
 class BillManager extends StatefulWidget {
   const BillManager({Key? key}) : super(key: key);
 
