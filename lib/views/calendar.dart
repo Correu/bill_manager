@@ -24,6 +24,11 @@ class _CalendarState extends State<Calendar> {
       backgroundColor: const Color(0x338ccdff),
       body: Column(
         children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 40.0,
+            ),
+          ),
           TableCalendar(
             focusedDay: _focusedDay,
             firstDay: DateTime(

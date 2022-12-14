@@ -33,7 +33,7 @@ class _BillEntryState extends State<BillEntry> {
         children: [
           const Padding(
             padding: EdgeInsets.all(
-              5.0,
+              40.0,
             ),
           ),
           Row(
