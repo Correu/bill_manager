@@ -75,7 +75,7 @@ class User {
             'device_name': device,
           },
         ));
-
+        debugPrint(email + " " + password + " " + device);
         debugPrint('${response.statusCode}');
         debugPrint(response.body);
 

@@ -38,6 +38,18 @@ class BillManager extends StatefulWidget {
 class _BillManagerState extends State<BillManager> {
   bool isBusy = false;
   bool isLoggedIn = false;
+
+
+  //this and initState handle the storing of keys for authentication and intial page displays according to signin status
+  @override
+  void initState() {
+    _checkLoginStatus();
+    super.initState();
+  }
+
+  void _checkLoginStatus() async {
+
+  }
   
   @override
   Widget build(BuildContext context) {
