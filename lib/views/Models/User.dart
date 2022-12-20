@@ -39,7 +39,7 @@ class User {
   ///
   /// Create a new user
   ///
-  Future<bool> createUser(String name, String email, String password) async {
+  Future<bool> createUser(String name, String email, String password, String rememberToken) async {
     final response = await http.post(
       Uri.parse(baseURL + 'api/createNewUser'),
       headers: <String, String>{
@@ -50,6 +50,7 @@ class User {
         'name': name,
         'email': email,
         'password': password,
+        'rememberToken': rememberToken,
       }),
     );
     debugPrint('${response.statusCode}');
