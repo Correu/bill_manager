@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 ///testing authentication
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +40,9 @@ class _BillManagerState extends State<BillManager> {
   bool isBusy = false;
   bool isLoggedIn = false;
 
+  void checkLogin() async {
+    final prefs = await SharedPreferences.getInstance();
+  }
 
   //this and initState handle the storing of keys for authentication and intial page displays according to signin status
   @override
