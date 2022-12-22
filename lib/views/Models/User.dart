@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:bill_manager/main.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,6 +30,7 @@ class User {
 
     await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (response != null) {
@@ -39,7 +42,8 @@ class User {
   ///
   /// Create a new user
   ///
-  Future<bool> createUser(String name, String email, String password, String rememberToken) async {
+  Future<bool> createUser(
+      String name, String email, String password, String rememberToken) async {
     final response = await http.post(
       Uri.parse(baseURL + 'api/createNewUser'),
       headers: <String, String>{
@@ -63,7 +67,11 @@ class User {
     return false;
   }
 
-  Future<http.Response> loginUser(String email, String password, String device) async {
+  ///
+  /// Log the user in, depending on success or failure a redirect/alert will tell you how to proceed.
+  ///
+  Future<void> loginUser(String email, String password, String device,
+      BuildContext context) async {
     final response = await http.post(Uri.parse(baseURL + 'api/mobileLogin'),
         headers: <String, String>{
           'Accept': 'application/json',
@@ -76,19 +84,27 @@ class User {
             'device_name': device,
           },
         ));
-        debugPrint(email + " " + password + " " + device);
-        debugPrint('${response.statusCode}');
-        debugPrint(response.body);
+    final decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+    var token = decodedResponse['Bearer'];
+    var message = decodedResponse['message'];
 
-        //if successful sign in save token and return content
-        if(response.statusCode == 200) {
-          String token = response.body;
-          debugPrint("login success $token");
-          await saveToken(token);
-          _isAuthenticated = true;
-        }
+    debugPrint(email + " " + password + " " + device);
+    debugPrint('${response.statusCode}');
+    debugPrint(response.body);
 
-        return response;
+    //determine the best way to alert the user of success or failure of sign in.
+    //if successful sign in save token direct to home page displaying user content.
+    if (response.statusCode == 200) {
+      debugPrint("login success: $token with message: $message");
+      await saveToken(token);
+      _isAuthenticated = true;
+      await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const BillManager()));
+    } else {
+      debugPrint("failed loging attempt with ${response.body} returned");
+
+    }
+    //else display incorrect attempt and allow user to try again.
   }
 
   ///

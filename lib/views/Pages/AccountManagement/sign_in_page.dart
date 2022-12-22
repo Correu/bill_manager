@@ -2,6 +2,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:bill_manager/views/Models/User.dart';
 
+//build out iOS interation as well.
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
 
@@ -74,6 +75,7 @@ class _SignInPageState extends State<SignInPage> {
                 emailController.text,
                 passwordController.text,
                 deviceName.toString(),
+                context,
               );
             },
             child: const Text(
