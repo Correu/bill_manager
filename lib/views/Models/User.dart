@@ -15,7 +15,6 @@ const String baseURL = 'http://10.0.2.2:8000/';
 
 class User {
   Response? response;
-  bool _isAuthenticated = false;
 
   User({this.response});
 
@@ -42,8 +41,8 @@ class User {
   ///
   /// Create a new user
   ///
-  Future<bool> createUser(
-      String name, String email, String password, String rememberToken) async {
+  Future<void> createUser(String name, String email, String password,
+      String rememberToken, BuildContext context) async {
     final response = await http.post(
       Uri.parse(baseURL + 'api/createNewUser'),
       headers: <String, String>{
@@ -60,11 +59,16 @@ class User {
     debugPrint('${response.statusCode}');
     debugPrint(response.body);
     if (response.statusCode == 200) {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString("access_token", response.body);
       debugPrint("Success Create User");
-      return true;
+      await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const BillManager(),
+        ),
+      );
     }
-
-    return false;
   }
 
   ///
@@ -97,12 +101,10 @@ class User {
     if (response.statusCode == 200) {
       debugPrint("login success: $token with message: $message");
       await saveToken(token);
-      _isAuthenticated = true;
-      await Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const BillManager()));
+      await Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const BillManager()));
     } else {
       debugPrint("failed loging attempt with ${response.body} returned");
-
     }
     //else display incorrect attempt and allow user to try again.
   }
