@@ -26,7 +26,7 @@ class _AccountCreationState extends State<AccountCreation> {
 
   void getDeviceData() async {
     androidDeviceInfo = await deviceInfoPlugin.androidInfo;
-    
+
     setState(() {
       deviceName = androidDeviceInfo.device;
     });
@@ -98,6 +98,7 @@ class _AccountCreationState extends State<AccountCreation> {
                   emailController.text,
                   passwordController.text,
                   deviceName.toString(),
+                  context,
                 );
               },
               child: const Text(

@@ -40,10 +40,6 @@ class _BillManagerState extends State<BillManager> {
   bool isBusy = false;
   bool isLoggedIn = false;
 
-  void checkLogin() async {
-    final prefs = await SharedPreferences.getInstance();
-  }
-
   //this and initState handle the storing of keys for authentication and intial page displays according to signin status
   @override
   void initState() {
@@ -52,7 +48,10 @@ class _BillManagerState extends State<BillManager> {
   }
 
   void _checkLoginStatus() async {
-
+    final prefs = await SharedPreferences.getInstance();
+    if(prefs.getString("access_token") != null) {
+      isLoggedIn = true;
+    }
   }
   
   @override
