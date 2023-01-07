@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:bill_manager/main.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:bill_manager/views/Widgets/invalid_login.dart';
 
 //firebase auth packages
 import 'package:firebase_auth/firebase_auth.dart';
@@ -105,6 +106,7 @@ class User {
           MaterialPageRoute(builder: (context) => const BillManager()));
     } else {
       debugPrint("failed loging attempt with ${response.body} returned");
+      await Navigator.push(context, MaterialPageRoute(builder: (context) => const InvalidLoginWidget()));
     }
     //else display incorrect attempt and allow user to try again.
   }

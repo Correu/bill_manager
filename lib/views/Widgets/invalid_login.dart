@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 class InvalidLoginWidget extends StatelessWidget {
@@ -7,10 +5,18 @@ class InvalidLoginWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AlertDialog(
-      title: Text(
+    return AlertDialog(
+      title: const Text(
         "Invalid Login Attempt",
       ),
+      actions: <Widget>[
+        TextButton(
+          child: const Text("Test"),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
     );
   }
 }
