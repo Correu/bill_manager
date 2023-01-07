@@ -9,14 +9,6 @@ class InvalidLoginWidget extends StatelessWidget {
       title: const Text(
         "Invalid Login Attempt",
       ),
-      actions: <Widget>[
-        TextButton(
-          child: const Text("Test"),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ],
     );
   }
 }
